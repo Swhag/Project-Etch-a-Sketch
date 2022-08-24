@@ -11,31 +11,58 @@ body {
 }
 
 .container {
-  border: 5px solid #fff;
+  border: 2px solid #fff;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1000px;
-  height: 1100px;
+  height: 100vh;
 }
 
 .container_in {
-  border: 5px solid #fff;
+  /* border: 2px solid #fff; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 700px;
-  height: 900px;
+  padding: 20px;
+}
+
+#board {
+  background: #fff;
+  width: 600px;
+  height: 600px;
+  margin: 40px 20px;
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+:root {
+  --grid-cols: 1;
+  --grid-rows: 1;
+}
+
+#board {
+  display: grid;
+  /* grid-gap: 1em; */
+  grid-template-rows: repeat(var(--grid-rows), 1fr);
+  grid-template-columns: repeat(var(--grid-cols), 1fr);
+}
+
+.grid-item {
+  /* padding: 1em; */
+  border: 1px solid #ddd;
+  text-align: center;
 }
 
 .button_box {
-  border: 5px solid #fff;
+  border: 1px solid #fff;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 2px;
 }
 
 .btn {
@@ -43,14 +70,7 @@ body {
   margin: 10px;
 }
 
-.board {
-  background: #fff;
-  width: 500px;
-  height: 600px;
-  margin-top: 50px;
-}
-
-.clear {
+#clear {
   padding: 5px 20px;
-  margin-top: 30px;
+  margin-top: 20px;
 }
