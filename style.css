@@ -6,7 +6,7 @@
 
 body {
   font-family: "Raleway", sans-serif;
-  background: #00838f;
+  background: #0097a7;
   color: #fff;
 }
 
@@ -66,8 +66,14 @@ body {
 }
 
 .btn {
+  width: 150px;
   padding: 5px 15px;
   margin: 10px;
+  background: #f57f17;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 17px;
 }
 
 #clear {

@@ -10,10 +10,10 @@ button64.addEventListener("click", () => {
   makeRows(64, 64);
 });
 
-const button256 = document.getElementById("256");
+const button256 = document.getElementById("128");
 button256.addEventListener("click", () => {
   deleteChild();
-  makeRows(256, 256);
+  makeRows(128, 128);
 });
 
 const board = document.getElementById("board");
@@ -44,4 +44,12 @@ function deleteChild() {
 const clear = document.getElementById("clear");
 clear.addEventListener("click", () => {
   location.reload();
+});
+
+function changeColor(event) {
+  event.target.style.backgroundColor = "black";
+}
+let gridBox = document.querySelectorAll("#board");
+gridBox.forEach((gridItem) => {
+  gridItem.addEventListener("mouseover", changeColor);
 });
