@@ -1,23 +1,20 @@
-let color = "black";
-const buttonBlack = document.getElementById("black");
-const buttonRandom = document.getElementById("random");
-const buttonEraser = document.getElementById("eraser");
 const button16 = document.getElementById("16");
-const button32 = document.getElementById("32");
-const button64 = document.getElementById("64");
+button16.addEventListener("click", () => {
+  deleteChild();
+  makeRows(16, 16);
+});
 
-buttonBlack.onclick = () => (color = "black");
-buttonRandom.onclick = () => (color = "random");
-buttonEraser.onclick = () => (color = "white");
-button16.onclick = () => {
-  deleteChild(), makeRows(16, 16);
-};
-button32.onclick = () => {
-  deleteChild(), makeRows(32, 32);
-};
-button64.onclick = () => {
-  deleteChild(), makeRows(64, 64);
-};
+const button32 = document.getElementById("32");
+button32.addEventListener("click", () => {
+  deleteChild();
+  makeRows(32, 32);
+});
+
+const button64 = document.getElementById("64");
+button64.addEventListener("click", () => {
+  deleteChild();
+  makeRows(64, 64);
+});
 // --------------------------------------------------------------------
 function getRandomColor() {
   let letters = "0123456789ABCDEF";
@@ -27,6 +24,22 @@ function getRandomColor() {
   }
   return color;
 }
+
+// --------------------------------------------------------------------
+let color = "black";
+const buttonBlack = document.getElementById("black");
+const buttonRandom = document.getElementById("random");
+const buttonEraser = document.getElementById("eraser");
+
+buttonBlack.addEventListener("click", () => {
+  color = "black";
+});
+buttonRandom.addEventListener("click", () => {
+  color = "random";
+});
+buttonEraser.addEventListener("click", () => {
+  color = "white";
+});
 
 // --------------------------------------------------------------------
 let mouseDown = false;
@@ -61,6 +74,8 @@ function changeColor(e) {
 //Function that removes previously created grids
 function deleteChild() {
   let e = document.getElementById("board");
+
+  //e.firstElementChild can be used.
   let child = e.lastElementChild;
   while (child) {
     e.removeChild(child);
