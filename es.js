@@ -4,17 +4,47 @@ button16.addEventListener("click", () => {
   makeRows(16, 16);
 });
 
+const button32 = document.getElementById("32");
+button32.addEventListener("click", () => {
+  deleteChild();
+  makeRows(32, 32);
+});
+
 const button64 = document.getElementById("64");
 button64.addEventListener("click", () => {
   deleteChild();
   makeRows(64, 64);
 });
+// --------------------------------------------------------------------
+function getRandomColor() {
+  let letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
 
-const button256 = document.getElementById("128");
-button256.addEventListener("click", () => {
-  deleteChild();
-  makeRows(128, 128);
+// --------------------------------------------------------------------
+let color = "black";
+const buttonBlack = document.getElementById("black");
+const buttonRandom = document.getElementById("random");
+const buttonEraser = document.getElementById("eraser");
+
+buttonBlack.addEventListener("click", () => {
+  color = "black";
 });
+buttonRandom.addEventListener("click", () => {
+  color = "random";
+});
+buttonEraser.addEventListener("click", () => {
+  color = "white";
+});
+
+// --------------------------------------------------------------------
+let mouseDown = 0;
+document.body.onmousedown = () => (mouseDown = 1);
+document.body.onmouseup = () => (mouseDown = 0);
 
 const board = document.getElementById("board");
 
@@ -23,8 +53,16 @@ function makeRows(rows, cols) {
   board.style.setProperty("--grid-cols", cols);
   for (i = 0; i < rows * cols; i++) {
     let cell = document.createElement("div");
-    // cell.innerText = i + 1;
     board.appendChild(cell).className = "grid-item";
+    cell.addEventListener("mouseover", function () {
+      if (mouseDown && color === "black") {
+        cell.style.backgroundColor = color;
+      } else if (mouseDown && color === "random") {
+        cell.style.backgroundColor = getRandomColor();
+      } else if (mouseDown && color === "white") {
+        cell.style.backgroundColor = color;
+      }
+    });
   }
 }
 
@@ -43,13 +81,8 @@ function deleteChild() {
 //Clear button reloads the page when clicked
 const clear = document.getElementById("clear");
 clear.addEventListener("click", () => {
-  location.reload();
+  deleteChild();
+  makeRows(32, 32);
 });
 
-function changeColor(event) {
-  event.target.style.backgroundColor = "black";
-}
-let gridBox = document.querySelectorAll("#board");
-gridBox.forEach((gridItem) => {
-  gridItem.addEventListener("mouseover", changeColor);
-});
+makeRows(32, 32);
