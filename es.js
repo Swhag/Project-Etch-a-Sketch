@@ -78,7 +78,7 @@ function deleteChild() {
   }
 }
 
-//Clear button reloads the page when clicked
+//Clear button refreshes the board
 const clear = document.getElementById("clear");
 clear.addEventListener("click", () => {
   deleteChild();
