@@ -1,21 +1,34 @@
-const button16 = document.getElementById("16");
-button16.addEventListener("click", () => {
-  deleteChild();
-  makeRows(16, 16);
-});
+const defaultColor = "#333333";
+const defaultMode = "color";
+let currentColor = defaultColor;
+let currentMode = defaultMode;
+const btnColor = document.getElementById("color");
+const btnRandom = document.getElementById("random");
+const btnEraser = document.getElementById("eraser");
+const btn16 = document.getElementById("16");
+const btn32 = document.getElementById("32");
+const btn64 = document.getElementById("64");
+const clear = document.getElementById("clear");
 
-const button32 = document.getElementById("32");
-button32.addEventListener("click", () => {
-  deleteChild();
-  makeRows(32, 32);
-});
+btnColor.onclick = () => setCurrentMode("color");
+btnRandom.onclick = () => setCurrentMode("random");
+btnEraser.onclick = () => setCurrentMode("eraser");
+btn16.onclick = () => (deleteGrid(), makeRows(16, 16));
+btn32.onclick = () => (deleteGrid(), makeRows(32, 32));
+btn64.onclick = () => (deleteGrid(), makeRows(64, 64));
+clear.onclick = () => (deleteGrid(), makeRows(32, 32));
+colorPicker.oninput = (e) => setCurrentColor(e.target.value);
 
-const button64 = document.getElementById("64");
-button64.addEventListener("click", () => {
-  deleteChild();
-  makeRows(64, 64);
-});
 // --------------------------------------------------------------------
+
+function setCurrentColor(newColor) {
+  currentColor = newColor;
+}
+
+function setCurrentMode(newMode) {
+  currentMode = newMode;
+}
+
 function getRandomColor() {
   let letters = "0123456789ABCDEF";
   let color = "#";
@@ -26,22 +39,7 @@ function getRandomColor() {
 }
 
 // --------------------------------------------------------------------
-let color = "black";
-const buttonBlack = document.getElementById("black");
-const buttonRandom = document.getElementById("random");
-const buttonEraser = document.getElementById("eraser");
 
-buttonBlack.addEventListener("click", () => {
-  color = "black";
-});
-buttonRandom.addEventListener("click", () => {
-  color = "random";
-});
-buttonEraser.addEventListener("click", () => {
-  color = "white";
-});
-
-// --------------------------------------------------------------------
 let mouseDown = false;
 document.body.onmousedown = () => (mouseDown = true);
 document.body.onmouseup = () => (mouseDown = false);
@@ -62,32 +60,22 @@ function makeRows(rows, cols) {
 
 function changeColor(e) {
   if (e.type === "mouseover" && !mouseDown) return;
-  if (color === "black") {
-    e.target.style.backgroundColor = color;
-  } else if (color === "random") {
+  if (currentMode === "random") {
     e.target.style.backgroundColor = getRandomColor();
-  } else if (color === "white") {
-    e.target.style.backgroundColor = color;
+  } else if (currentMode === "color") {
+    e.target.style.backgroundColor = currentColor;
+  } else if (currentMode === "eraser") {
+    e.target.style.backgroundColor = "white";
   }
 }
 
-//Function that removes previously created grids
-function deleteChild() {
+function deleteGrid() {
   let e = document.getElementById("board");
-
-  //e.firstElementChild can be used.
   let child = e.lastElementChild;
   while (child) {
     e.removeChild(child);
     child = e.lastElementChild;
   }
 }
-
-//Clear button refreshes the board
-const clear = document.getElementById("clear");
-clear.addEventListener("click", () => {
-  deleteChild();
-  makeRows(32, 32);
-});
 
 makeRows(32, 32);
