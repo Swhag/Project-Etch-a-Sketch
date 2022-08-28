@@ -2,6 +2,7 @@ const defaultColor = "#333333";
 const defaultMode = "color";
 let currentColor = defaultColor;
 let currentMode = defaultMode;
+
 const btnColor = document.getElementById("color");
 const btnRandom = document.getElementById("random");
 const btnEraser = document.getElementById("eraser");
@@ -11,7 +12,7 @@ const btn64 = document.getElementById("64");
 const clear = document.getElementById("clear");
 const board = document.getElementById("board");
 
-btnColor.onclick = () => setCurrentMode("color");
+btnColor.onclick = () => (setCurrentMode("color"), activateBtn());
 btnRandom.onclick = () => setCurrentMode("random");
 btnEraser.onclick = () => setCurrentMode("eraser");
 btn16.onclick = () => (deleteGrid(), makeRows(16, 16));
@@ -71,5 +72,18 @@ function deleteGrid() {
 }
 
 // --------------------------------------------------------------------
+
+const btns = document.getElementsByClassName("color");
+function activateBtn() {
+  for (let i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", function () {
+      let current = document.getElementsByClassName("active");
+      if (current.length > 0) {
+        current[0].className = current[0].className.replace(" active", "");
+      }
+      this.className += " active";
+    });
+  }
+}
 
 makeRows(32, 32);

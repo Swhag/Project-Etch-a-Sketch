@@ -25,7 +25,6 @@ body {
 }
 
 .container_in {
-  /* border: 2px solid #fff; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -101,6 +100,10 @@ body {
 .btn:hover {
   background-color: #bc5100;
   transform: scale(1.05);
+}
+
+.active {
+  border: 5px solid orange;
 }
 
 .color {
