@@ -13,13 +13,13 @@ const clear = document.getElementById("clear");
 const board = document.getElementById("board");
 const btns = document.getElementsByClassName("colors");
 
-btnColor.onclick = () => (setCurrentMode("color"), activateBtn());
-btnRandom.onclick = () => (setCurrentMode("random"), activateBtn());
-btnEraser.onclick = () => (setCurrentMode("eraser"), activateBtn());
-btn16.onclick = () => (deleteGrid(), makeRows(16, 16));
-btn32.onclick = () => (deleteGrid(), makeRows(32, 32));
-btn64.onclick = () => (deleteGrid(), makeRows(64, 64));
-clear.onclick = () => (deleteGrid(), makeRows(32, 32));
+btnColor.onmousedown = () => (activateBtn(), setCurrentMode("color"));
+btnRandom.onmousedown = () => (activateBtn(), setCurrentMode("random"));
+btnEraser.onmousedown = () => (activateBtn(), setCurrentMode("eraser"));
+btn16.onclick = () => (clearGrid(), makeRows(16, 16));
+btn32.onclick = () => (clearGrid(), makeRows(32, 32));
+btn64.onclick = () => (clearGrid(), makeRows(64, 64));
+clear.onclick = () => (clearGrid(), makeRows(32, 32));
 colorPicker.oninput = (e) => setCurrentColor(e.target.value);
 
 let mouseDown = false;
@@ -80,7 +80,7 @@ function activateBtn() {
   }
 }
 
-function deleteGrid() {
+function clearGrid() {
   board.innerHTML = "";
 }
 
