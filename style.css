@@ -102,11 +102,7 @@ body {
   transform: scale(1.05);
 }
 
-.active {
-  border: 5px solid orange;
-}
-
-.color {
+.colors {
   width: 150px;
   height: 35px;
   margin: 10px;
@@ -116,7 +112,7 @@ body {
   background: #f4f4f4;
   font-weight: bold;
 }
-.color:hover {
+.colors:hover {
   transform: scale(1.05);
 }
 
@@ -156,4 +152,8 @@ body {
 
 #clear:hover {
   background-color: #f4f4f4;
+}
+
+.active {
+  border: 5px solid orange;
 }

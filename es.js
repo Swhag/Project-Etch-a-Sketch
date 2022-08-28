@@ -11,10 +11,11 @@ const btn32 = document.getElementById("32");
 const btn64 = document.getElementById("64");
 const clear = document.getElementById("clear");
 const board = document.getElementById("board");
+const btns = document.getElementsByClassName("colors");
 
 btnColor.onclick = () => (setCurrentMode("color"), activateBtn());
-btnRandom.onclick = () => setCurrentMode("random");
-btnEraser.onclick = () => setCurrentMode("eraser");
+btnRandom.onclick = () => (setCurrentMode("random"), activateBtn());
+btnEraser.onclick = () => (setCurrentMode("eraser"), activateBtn());
 btn16.onclick = () => (deleteGrid(), makeRows(16, 16));
 btn32.onclick = () => (deleteGrid(), makeRows(32, 32));
 btn64.onclick = () => (deleteGrid(), makeRows(64, 64));
@@ -67,13 +68,6 @@ function changeColor(e) {
   }
 }
 
-function deleteGrid() {
-  board.innerHTML = "";
-}
-
-// --------------------------------------------------------------------
-
-const btns = document.getElementsByClassName("color");
 function activateBtn() {
   for (let i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", function () {
@@ -85,5 +79,11 @@ function activateBtn() {
     });
   }
 }
+
+function deleteGrid() {
+  board.innerHTML = "";
+}
+
+// --------------------------------------------------------------------
 
 makeRows(32, 32);
