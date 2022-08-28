@@ -11,7 +11,6 @@ const btn32 = document.getElementById("32");
 const btn64 = document.getElementById("64");
 const clear = document.getElementById("clear");
 const board = document.getElementById("board");
-const btns = document.getElementsByClassName("colors");
 
 btnColor.onmousedown = () => (activateBtn(), setCurrentMode("color"));
 btnRandom.onmousedown = () => (activateBtn(), setCurrentMode("random"));
@@ -69,6 +68,7 @@ function changeColor(e) {
 }
 
 function activateBtn() {
+  const btns = document.getElementsByClassName("colors");
   for (let i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", function () {
       let current = document.getElementsByClassName("active");
