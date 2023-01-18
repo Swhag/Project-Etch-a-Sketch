@@ -1,4 +1,4 @@
-# Project-Etch-a-Sketch (Quick Project)
+# Project-Etch-a-Sketch (Small Project)
 
 ## Features
 
